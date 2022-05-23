@@ -48,3 +48,14 @@ df["colname"][rowno.] = new_value
 encoded = pd.get_dummies(df['location'])
 df = pd.concat([df, encoded], axis = 1)
 df.drop(columns='location', inplace=True)
+
+def z_score:   #another method for finding outliers
+    mean = np.mean(data)
+    std = np.std(data)
+    threshold = 3
+    outlier = []
+    for i in data:
+        z = (i-mean)/std
+        if z > threshold:
+            outlier.append(i)
+    print('outlier in dataset is', outlier)
