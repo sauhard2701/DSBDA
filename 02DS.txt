@@ -5,29 +5,47 @@ import matplotlib.pyplot as plt
 
 #central tendency	X_colname = df['colname'].X()
 X=var/std/min/max..	print('X_Colname: ', X_colname)
+perc_income = df[['Income']].quantile(.95)
+
 #without in-built funcs
-arr = list(df['colname'])
+arr = list(df['Income'])
+
 def mean(arr):
-	return sum(arr)/len(arr)
+    return sum(arr)/len(arr)
+
 def median(arr):
     if len(arr)%2 == 0:
         arr = sorted(arr)
         return (arr[len(arr)//2] + arr[len(arr)//2 - 1]) / 2
     else:
         arr = sorted(arr)
-        return arr[(len(arr)-1)//2]
+        return arr[len(arr)//2]
+
 def maximum(arr):
     return max(arr)
+
 def minimum(arr):
     return min(arr)
+
 def standard_deviation(arr):
     m = mean(arr)
     N = len(arr)
-    return (sum([(i-m)**2 for i in arr])/(N))**0.5
+    return (sum([(i-m)**2 for i in arr])/(N-1))**0.5
+
 def variance(arr):
     m = mean(arr)
     N = len(arr)
-    return (sum([(i-m)**2 for i in arr])/(N))
+    return (sum([(i-m)**2 for i in arr])/(N-1))
+
+def mode(arr):
+    y={}
+    for i in arr:
+        if i not in y:
+            y[i]=1
+        else:
+            y[i]+=1
+    return [g for g,l in y.items() if l==max(y.values())]
+
 #define categories:	
 old = df[df['Age']=='Old']
 young = df[df['Age']=='Young']
@@ -42,6 +60,7 @@ new_df = pd.DataFrame(data)
 new_df
 
 df['Age'].value_counts() #verification
+
 #basic stats cal:	species = df['colname'].unique()
 					df.drop(columns=['colname_todrop'], inplace=True)
 					for s in species:
