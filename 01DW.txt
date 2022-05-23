@@ -1,0 +1,46 @@
+import numpy as np
+import pandas as pd
+
+df = pd.read_excel('Age-Income-Dataset.xlsx')
+df (could be excel or csv)
+df.shape
+df.describe()
+df.count(axis='rows')
+df.isna().sum  (*100/len(df) for %)
+
+x=df["colname"].mean
+df.["colname"].fillna(x,inplace=True)# x can be anything
+df["colname"]=df["colname"].abs()
+df.round(2) # change no. of decimals
+df['Date'}=pd.to_datetime(df.['Date'])
+df["colname"]=df["colname"].astype(int)
+df.drop_duplicates(inplace=True)
+
+#categorical to numerical M1
+df["colname"].unique()
+df["cat_colname"].value_counts()
+df["cat_colname"].replace({"val1":num1,"val2":num2...},inplace=True)
+
+#categorical to numerical M2 (label encoding)
+from sklearn import preprocessing 
+x=preprocessing.LabelEncoder()
+df["colname"]=x.fit_transform(df["colname"])
+df["colname"].unique() #view result
+
+#numerical to categorical
+df["num_colname"].value_counts()
+x=pd.cut(df.num_colname, bins=[19,25,35,45], labels=["A","B","C"])
+df.insert(new_colno.,"new_colname",x)
+
+#imputing categorical data
+from sklearn.impute import SimpleImputer 
+x = df["cat_colname"].mode()
+df["cat_colname"].fillna(x[0], inplace = True)
+f["cat_colname"].isna().sum()
+
+#replacing outliers with mean
+import seaborn as sns 
+sns.boxplot(data= df["colname"],x= df["colname"])
+df[df["colname"] > 100] = df["colname"].mean()
+df.loc[rowno., "colname"] = 60
+df["colname"][rowno.] = new_value

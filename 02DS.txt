@@ -1,0 +1,59 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+#central tendency	X_colname = df['colname'].X()
+X=var/std/min/max..	print('X_Colname: ', X_colname)
+#without in-built funcs
+arr = list(df['colname'])
+def mean(arr):
+	return sum(arr)/len(arr)
+def median(arr):
+    if len(arr)%2 == 0:
+        arr = sorted(arr)
+        return (arr[len(arr)//2] + arr[len(arr)//2 - 1]) / 2
+    else:
+        arr = sorted(arr)
+        return arr[len(arr)//2]
+def maximum(arr):
+    return max(arr)
+def minimum(arr):
+    return min(arr)
+def standard_deviation(arr):
+    m = mean(arr)
+    N = len(arr)
+    return (sum([(i-m)**2 for i in arr])/(N-1))**0.5
+def variance(arr):
+    m = mean(arr)
+    N = len(arr)
+    return (sum([(i-m)**2 for i in arr])/(N-1))
+#define categories:	
+old = df[df['Age']=='Old']
+young = df[df['Age']=='Young']
+middle_age = df[df['Age']=='Middle Age']
+
+old_stats = old.describe()['Income']
+young_stats = young.describe()['Income']
+middle_age_stats = middle_age.describe()['Income']
+
+data = {'Old': old_stats, 'Young': young_stats, 'Middle': middle_age_stats}
+new_df = pd.DataFrame(data)
+new_df
+
+df['Age'].value_counts() #verification
+#basic stats cal:	species = df['colname'].unique()
+					df.drop(columns=['colname_todrop'], inplace=True)
+					for s in species:
+					    print('Species: ', s)
+					    print(df[df['Species']==s].describe())
+					    print()
+#scatterplot corr.:	figure = plt.figure(figsize=(15, 15))
+					index = 1
+					for i in range(3):
+					    for j in range(i+1,4):
+					        plt.subplot(3, 2, index)
+					        plt.scatter(df[df.columns[i]], df[df.columns[j]], color='green')
+					        plt.xlabel(df.columns[i])
+					        plt.ylabel(df.columns[j])
+					        index += 1

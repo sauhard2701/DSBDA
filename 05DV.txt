@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = sns.load_dataset('titanic')
+df.drop("deck",axis=1,inplace = True)
+df = df.dropna()
+df.describe()
+
+sns.histplot(data=df,bins=10)
+sns.displot(df,x='colname1', hue='colname2', kde=True, multiple="stack", bins=10)
+sns.displot(df,x='colname1', hue='colname2', kde=True, multiple="stack", binwidth=50)
+sns.displot(df,x="fare",col="sex",binwidth=40)
+
+sns.countplot(x="sex",data=df)
+sns.barplot(x='sex', y='age', data=df)
+sns.catplot(x="embark_town",hue="survived",kind='count',col="pclass",data=df)
+sns.boxplot(x='sex', y='age', data=df)
+sns.boxplot(x="age",y="sex",data=df)
+sns.boxplot(x='sex', y='age', data=df, hue="survived")
+sns.scatterplot(data=df)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.set(style="darkgrid") # set a grey background 
+df = sns.load_dataset("iris")
+print(df.dtypes)
+
+figure = plt.figure(figsize=(11, 5))
+sns.histplot(data=df, x="colname", hue="species")
+plt.show()
+
+df[df["colname"] > 100]
+df[df["colname"] > 100] = df["colname"].mean()
