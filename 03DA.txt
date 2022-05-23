@@ -16,8 +16,7 @@ from sklearn.linear_model import LogisticRegression
 lrmodel = LogisticRegression()
 lrmodel.fit(x_train, y_train)
 
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score
 y_pred = lrmodel.predict(x_test)
 score1 = accuracy_score(y_test, y_pred)
 
