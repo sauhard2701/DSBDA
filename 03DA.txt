@@ -27,7 +27,6 @@ x_new = std.fit_transform(x_new)
 y_new = lrmodel.predict(x_new)
 y_new
 
-from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import auc, roc_curve
 cm = confusion_matrix(y_test, y_pred)
