@@ -44,3 +44,7 @@ sns.boxplot(data= df["colname"],x= df["colname"])
 df[df["colname"] > 100] = df["colname"].mean()
 df.loc[rowno., "colname"] = 60
 df["colname"][rowno.] = new_value
+
+encoded = pd.get_dummies(df['location'])
+df = pd.concat([df, encoded], axis = 1)
+df.drop(columns='location', inplace=True)
