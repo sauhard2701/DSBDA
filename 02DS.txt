@@ -15,7 +15,7 @@ def median(arr):
         return (arr[len(arr)//2] + arr[len(arr)//2 - 1]) / 2
     else:
         arr = sorted(arr)
-        return arr[len(arr)//2]
+        return arr[(len(arr)-1)//2]
 def maximum(arr):
     return max(arr)
 def minimum(arr):
@@ -23,11 +23,11 @@ def minimum(arr):
 def standard_deviation(arr):
     m = mean(arr)
     N = len(arr)
-    return (sum([(i-m)**2 for i in arr])/(N-1))**0.5
+    return (sum([(i-m)**2 for i in arr])/(N))**0.5
 def variance(arr):
     m = mean(arr)
     N = len(arr)
-    return (sum([(i-m)**2 for i in arr])/(N-1))
+    return (sum([(i-m)**2 for i in arr])/(N))
 #define categories:	
 old = df[df['Age']=='Old']
 young = df[df['Age']=='Young']
