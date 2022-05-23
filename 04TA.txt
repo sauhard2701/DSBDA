@@ -25,12 +25,9 @@ review_text_lower = review_text.apply(lambda x: x.astype(str).str.lower())
 df['review_lower']=review_text_lower
 df['review_lower']
 
-string.punctuation
-#defining the function to remove punctuation
 def remove_punctuation(text):
     punctuationfree="".join([i for i in text if i not in string.punctuation])
     return punctuationfree
-#storing the puntuation free text
 df['review_nopunc']= df['review_lower'].apply(lambda text: remove_punctuation(text))
 df['review_nopunc']
 
