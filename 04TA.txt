@@ -35,6 +35,7 @@ df['review_nopunc']
 def tokenization(text):
     tokens = re.split('W+',text)
     return tokens
+
 #applying function to the column
 df['msg_tokenized']= df['review_nopunc'].apply(lambda x: tokenization(x))
 df['msg_tokenized']
@@ -45,8 +46,8 @@ nltk.download('stopwords')
 
 STOPWORDS = set(stopwords.words('english'))
 def remove_stopwords(text):
-    """custom function to remove the stopwords"""
-    return " ".join([word for word in str(text).split() if word not in STOPWORDS])
+    no_stop = " ".join([word for word in str(text).split() if word not in STOPWORDS])
+    return no_stop
 
 df["text_wo_stop"] = df["msg_tokenized"].apply(lambda text: remove_stopwords(text))
 df["text_wo_stop"]
