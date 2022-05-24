@@ -48,16 +48,14 @@ STOPWORDS = set(stopwords.words('english'))
 def remove_stopwords(text):
     no_stop = " ".join([word for word in str(text).split() if word not in STOPWORDS])
     return no_stop
-
 df["text_wo_stop"] = df["msg_tokenized"].apply(lambda text: remove_stopwords(text))
 df["text_wo_stop"]
 
 from nltk.stem.porter import PorterStemmer
-
 stemmer = PorterStemmer()
 def stem_words(text):
-    return " ".join([stemmer.stem(word) for word in text.split()])
-
+	stem= " ".join([stemmer.stem(word) for word in text.split()])
+    return stem
 df["text_stemmed"] = df["text_wo_stop"].apply(lambda text: stem_words(text))
 df["text_stemmed"]
 
@@ -65,8 +63,8 @@ from nltk.stem import WordNetLemmatizer
 nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
 def lemmatize_words(text):
-    return " ".join([lemmatizer.lemmatize(word) for word in text.split()])
-
+	lemm= " ".join([lemmatizer.lemmatize(word) for word in text.split()])
+	return lemm
 nltk.download('omw-1.4')
 df["text_lemmatized"] = df["text_wo_stop"].apply(lambda text: lemmatize_words(text))
 df.head()
